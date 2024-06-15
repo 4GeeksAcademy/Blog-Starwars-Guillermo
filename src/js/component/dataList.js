@@ -2,7 +2,7 @@ import React from "react";
 
 const DataList = () => {
     return (
-        <p>hola</p>
+        <p>Home</p>
 
     )
 }

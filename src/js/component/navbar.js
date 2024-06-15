@@ -8,35 +8,44 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand">Star Wars</a>
-        <div className="collapse navbar-collapse" id="navbarText">
+        <a className="navbar-brand" href="#">
+          Star Wars
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <Link to={"/personajeListDisplay"}>
-              <li className="nav-item">
-                <button
-                  onClick={() => {console.log("test",store.Personajes)
-				  }}
-                  className="nav-link active"
-                  aria-current="page"
-                >
-                  Personajes
-                </button>
-              </li>
-            </Link>
-			<Link to={"/vehicleListDisplay"}>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Vehiculos
-              </a>
+              <Link to={"/"}>
+                <span className="nav-link" aria-current="page">
+                  Home
+                </span>
+              </Link>
             </li>
-			</Link>
-			<Link to={"/planetaListDisplay"} >
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Planetas
-              </a>
+              <Link to={"/personajeListDisplay"}>
+                <span className="nav-link">Personajes</span>
+              </Link>
             </li>
-			</Link>
+            <li className="nav-item">
+              <Link to={"/vehicleListDisplay"}>
+                <span className="nav-link">Vehiculos</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/planetaListDisplay"}>
+                <span className="nav-link">Planetas</span>
+              </Link>
+            </li>
           </ul>
           <div className="btn-group">
             <button
