@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 import PersonajeListDisplay from "./component/personajeListDisplay";
 import VehicleListDisplay from "./component/vehicleListDisplay";
 import PlanetaListDisplay from "./component/planetaListDisplay";
+import DetailCard from "./views/detailCard";
 
 import Navbar from "./component/navbar";
 
@@ -25,13 +26,24 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-			<Route path="/personajeListDisplay" element={<PersonajeListDisplay />} />
-			<Route path="/vehicleListDisplay" element={<VehicleListDisplay />} />
-			<Route path="/planetaListDisplay" element={<PlanetaListDisplay />} />
+            <Route
+              path="/personajeListDisplay"
+              element={<PersonajeListDisplay />}
+            />
+            <Route
+              path="/vehicleListDisplay"
+              element={<VehicleListDisplay />}
+            />
+            <Route
+              path="/planetaListDisplay"
+              element={<PlanetaListDisplay />}
+            />
 
             <Route path="/demo" element={<Demo />} />
             <Route path="/single/:theid" element={<Single />} />
-            <Route path="*" element={<h1>Not found!</h1>} />
+            <Route path="/detailCard/:id" element={<DetailCard />} />
+
+            <Route path="*" element={<h1>Estos no son los androides que buscáis!</h1>} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

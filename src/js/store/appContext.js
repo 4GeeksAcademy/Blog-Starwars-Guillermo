@@ -23,6 +23,7 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 
+			console.log("useEffect")
 			state.actions.getListaPersonajes();
 			state.actions.getListaVehiculos();
 			state.actions.getListaPlanetas();

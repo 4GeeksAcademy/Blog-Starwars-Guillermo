@@ -1,9 +1,42 @@
+import LukeSkywalker from "/src/img/Personajes/luke-skywalker.webp";
+import c3po from "/src/img/Personajes/c-3po.webp";
+import r2d2 from "/src/img/Personajes/r2-d2-.webp";
+import DarthVader from "/src/img/Personajes/dv2.jpg";
+import Leia from "/src/img/Personajes/Leia-Organa.jpg";
+import Owen from "/src/img/Personajes/owen.webp"
+import Beru from "/src/img/Personajes/Beru.jpeg"
+import R5D4 from "/src/img/Personajes/R5-D4.webp"
+import Biggs from "/src/img/Personajes/Biggs Darklighter.jpeg"
+import ObiWan from "/src/img/Personajes/Obi-Wan Kenobi.webp"
+
+import sandCrawler from "/src/img/Vehiculos/Sandcrawler.webp"
+
+import Tatooine from "/src/img/Planetas/Tatooine.webp"
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       Personajes: [],
       Vehiculos: [],
       Planetas: [],
+      ImagenesPersonajes: {
+        "Luke Skywalker": LukeSkywalker,
+        "C-3PO": c3po,
+        "R2-D2": r2d2,
+        "Darth Vader": DarthVader,
+        "Leia Organa": Leia,
+        "Owen Lars" : Owen,
+        "Beru Whitesun lars" : Beru,
+        "R5-D4" : R5D4,
+        "Biggs Darklighter" : Biggs,
+        "Obi-Wan Kenobi" : ObiWan,
+      },
+      ImagenesVehiculos: {
+        "Sand Crawler" : sandCrawler
+      },
+      ImagenesPlanetas: {
+        "Tatooine" : Tatooine
+      }
     },
     actions: {
       getListaPersonajes: async () => {
@@ -20,7 +53,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (!response.ok) throw new Error("Network response was not ok");
 
           const data = await response.json();
-          console.log("GETdata", data.results);
 
           // Fetch details for each character
           const personajesDetailsPromises = data.results.map((personaje) =>
@@ -54,7 +86,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (!response.ok) throw new Error("Network response was not ok");
 
           const data = await response.json();
-          console.log("GETdata", data.result);
 
           return data.result;
         } catch (error) {
@@ -75,7 +106,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (!response.ok) throw new Error("Network response was not ok");
 
           const data = await response.json();
-          console.log("GETdata", data.results);
 
           // Fetch details for each character
           const VehiculosDetailsPromises = data.results.map((Vehiculos) =>
@@ -107,7 +137,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (!response.ok) throw new Error("Network response was not ok");
 
           const data = await response.json();
-          console.log("GETdata", data.result);
 
           return data.result;
         } catch (error) {
@@ -128,7 +157,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (!response.ok) throw new Error("Network response was not ok");
 
           const data = await response.json();
-          console.log("GETdata", data.results);
 
           // Fetch details for each character
           const PlanetasDetailsPromises = data.results.map((Planetas) =>
@@ -160,7 +188,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (!response.ok) throw new Error("Network response was not ok");
 
           const data = await response.json();
-          console.log("GETdata", data.result);
 
           return data.result;
         } catch (error) {
