@@ -6,8 +6,16 @@ const PlanetaListDisplay = () => {
   const { store } = useContext(Context);
 
   return (
-    <div className="row row-cols-1 row-cols-md-2 g-4">
-      <DataCard dataList={store.Planetas} />
+    <div>
+      {store.Planetas.length === 0 ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+          {store.Planetas.map((planeta, index) => (
+            <DataCard key={index} dataList={[planeta]} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

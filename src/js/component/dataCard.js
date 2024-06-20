@@ -4,23 +4,17 @@ import { Context } from "../store/appContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-// store.ImagenesPersonajes[data.properties.name]
-
 const DataCard = ({ dataList }) => {
   if (!dataList) return null;
   const { store } = useContext(Context);
 
-  const imagenSelect = () => {
-    if (dataList[0].description === "A person within the Star Wars universe")
+  const imagenSelect = (description) => {
+    if (description === "A person within the Star Wars universe")
       return "ImagenesPersonajes";
-    else if (dataList[0].description === "A vehicle")
-      return "ImagenesVehiculos";
+    else if (description === "A vehicle") return "ImagenesVehiculos";
     else return "ImagenesPlanetas";
   };
 
-  {
-    console.log(dataList[0].description);
-  }
   return (
     <>
       {dataList.map((data) => (
@@ -28,9 +22,7 @@ const DataCard = ({ dataList }) => {
           <div className="card">
             <div style={{ overflow: "hidden", height: "270px" }}>
               <img
-                src={
-                  store[imagenSelect(data.description)][data.properties.name]
-                }
+                src={store[imagenSelect(data.description)][data.properties.name]}
                 className="card-img-top img-fluid"
                 alt={data.properties.name}
               />

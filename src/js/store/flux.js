@@ -3,15 +3,13 @@ import c3po from "/src/img/Personajes/c-3po.webp";
 import r2d2 from "/src/img/Personajes/r2-d2-.webp";
 import DarthVader from "/src/img/Personajes/dv2.jpg";
 import Leia from "/src/img/Personajes/Leia-Organa.jpg";
-import Owen from "/src/img/Personajes/owen.webp"
-import Beru from "/src/img/Personajes/Beru.jpeg"
-import R5D4 from "/src/img/Personajes/R5-D4.webp"
-import Biggs from "/src/img/Personajes/Biggs Darklighter.jpeg"
-import ObiWan from "/src/img/Personajes/Obi-Wan Kenobi.webp"
-
-import sandCrawler from "/src/img/Vehiculos/Sandcrawler.webp"
-
-import Tatooine from "/src/img/Planetas/Tatooine.webp"
+import Owen from "/src/img/Personajes/owen.webp";
+import Beru from "/src/img/Personajes/Beru.jpeg";
+import R5D4 from "/src/img/Personajes/R5-D4.webp";
+import Biggs from "/src/img/Personajes/Biggs Darklighter.jpeg";
+import ObiWan from "/src/img/Personajes/Obi-Wan Kenobi.webp";
+import sandCrawler from "/src/img/Vehiculos/Sandcrawler.webp";
+import Tatooine from "/src/img/Planetas/Tatooine.webp";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -25,18 +23,18 @@ const getState = ({ getStore, getActions, setStore }) => {
         "R2-D2": r2d2,
         "Darth Vader": DarthVader,
         "Leia Organa": Leia,
-        "Owen Lars" : Owen,
-        "Beru Whitesun lars" : Beru,
-        "R5-D4" : R5D4,
-        "Biggs Darklighter" : Biggs,
-        "Obi-Wan Kenobi" : ObiWan,
+        "Owen Lars": Owen,
+        "Beru Whitesun lars": Beru,
+        "R5-D4": R5D4,
+        "Biggs Darklighter": Biggs,
+        "Obi-Wan Kenobi": ObiWan,
       },
       ImagenesVehiculos: {
-        "Sand Crawler" : sandCrawler
+        "Sand Crawler": sandCrawler,
       },
       ImagenesPlanetas: {
-        "Tatooine" : Tatooine
-      }
+        "Tatooine": Tatooine,
+      },
     },
     actions: {
       getListaPersonajes: async () => {
@@ -54,7 +52,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const data = await response.json();
 
-          // Fetch details for each character
           const personajesDetailsPromises = data.results.map((personaje) =>
             actions.getPersonajes(personaje.uid)
           );
@@ -62,10 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             personajesDetailsPromises
           );
 
-          // Update store with detailed character information
           setStore({ Personajes: personajesDetails });
-
-          return personajesDetails;
         } catch (error) {
           console.error("Fetch request failed:", error);
         }
@@ -107,16 +101,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const data = await response.json();
 
-          // Fetch details for each character
-          const VehiculosDetailsPromises = data.results.map((Vehiculos) =>
-            actions.getVehiculos(Vehiculos.uid)
+          const vehiculosDetailsPromises = data.results.map((vehiculo) =>
+            actions.getVehiculos(vehiculo.uid)
           );
-          const VehiculosDetails = await Promise.all(VehiculosDetailsPromises);
+          const vehiculosDetails = await Promise.all(
+            vehiculosDetailsPromises
+          );
 
-          // Update store with detailed character information
-          setStore({ Vehiculos: VehiculosDetails });
-
-          return VehiculosDetails;
+          setStore({ Vehiculos: vehiculosDetails });
         } catch (error) {
           console.error("Fetch request failed:", error);
         }
@@ -158,16 +150,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const data = await response.json();
 
-          // Fetch details for each character
-          const PlanetasDetailsPromises = data.results.map((Planetas) =>
-            actions.getPlanetas(Planetas.uid)
+          const planetasDetailsPromises = data.results.map((planeta) =>
+            actions.getPlanetas(planeta.uid)
           );
-          const PlanetasDetails = await Promise.all(PlanetasDetailsPromises);
+          const planetasDetails = await Promise.all(planetasDetailsPromises);
 
-          // Update store with detailed character information
-          setStore({ Planetas: PlanetasDetails });
-
-          return PlanetasDetails;
+          setStore({ Planetas: planetasDetails });
         } catch (error) {
           console.error("Fetch request failed:", error);
         }
