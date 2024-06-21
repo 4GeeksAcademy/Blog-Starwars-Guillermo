@@ -10,6 +10,16 @@ import Biggs from "/src/img/Personajes/Biggs Darklighter.jpeg";
 import ObiWan from "/src/img/Personajes/Obi-Wan Kenobi.webp";
 import sandCrawler from "/src/img/Vehiculos/Sandcrawler.webp";
 import Tatooine from "/src/img/Planetas/Tatooine.webp";
+import x34 from "/src/img/Vehiculos/x-34.jpeg"
+import t16skyhopper from "/src/img/Vehiculos/T-16 skyhopper.jpg"
+import tielnstarfighter from "/src/img/Vehiculos/TIELN starfighter.jpeg"
+import snowspeeder from "/src/img/Vehiculos/snowspeeder.jpeg"
+import ATAT from "/src/img/Vehiculos/atat.jpg"
+import TIEbomber from "/src/img/Vehiculos/TIE_Bomber.webp"
+
+
+
+
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -17,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       Personajes: [],
       Vehiculos: [],
       Planetas: [],
+      Favoritos: [],
       ImagenesPersonajes: {
         "Luke Skywalker": LukeSkywalker,
         "C-3PO": c3po,
@@ -31,9 +42,18 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       ImagenesVehiculos: {
         "Sand Crawler": sandCrawler,
+        "X-34 landspeeder": x34,
+        "T-16 skyhopper": t16skyhopper,
+        "TIE/LN starfighter": tielnstarfighter,
+        "Snowspeeder": snowspeeder,
+        "AT-AT" : ATAT,
+        "TIE bomber": TIEbomber,
+        
+
+
       },
       ImagenesPlanetas: {
-        "Tatooine": Tatooine,
+        Tatooine: Tatooine,
       },
     },
     actions: {
@@ -104,9 +124,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const vehiculosDetailsPromises = data.results.map((vehiculo) =>
             actions.getVehiculos(vehiculo.uid)
           );
-          const vehiculosDetails = await Promise.all(
-            vehiculosDetailsPromises
-          );
+          const vehiculosDetails = await Promise.all(vehiculosDetailsPromises);
 
           setStore({ Vehiculos: vehiculosDetails });
         } catch (error) {
@@ -181,6 +199,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.error("Fetch request failed:", error);
         }
+      },
+      addFav: (element) => {
+        const store = getStore();
+        const updatedFavoritos = [...store.Favoritos, element];
+        setStore({ Favoritos: updatedFavoritos });
       },
     },
   };

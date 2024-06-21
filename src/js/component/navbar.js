@@ -57,21 +57,13 @@ const Navbar = () => {
               Favoritos
             </button>
             <ul className="dropdown-menu dropdown-menu-end">
-              <li>
-                <button className="dropdown-item" type="button">
-                  1
-                </button>
-              </li>
-              <li>
-                <button className="dropdown-item" type="button">
-                  2
-                </button>
-              </li>
-              <li>
-                <button className="dropdown-item" type="button">
-                  3
-                </button>
-              </li>
+              {store.Favoritos.map((elemento) => (
+                <li key={elemento._id}>
+                  <button className="dropdown-item" type="button">
+                    {elemento.properties.name}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
