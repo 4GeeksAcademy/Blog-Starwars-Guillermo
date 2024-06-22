@@ -5,7 +5,6 @@ import fondo from "/src/img/fondoespacio.jpg";
 
 const PersonajeListDisplay = () => {
   const { store } = useContext(Context);
-
   return (
     <div
       className="container-fluid py-5"
