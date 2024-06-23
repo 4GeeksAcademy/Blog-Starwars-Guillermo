@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import fondosnow from "/src/img/star-wars-backgrounds-31_0a247b7f.jpeg";
 import tatooine from "/src/img/tatooin.jpg";

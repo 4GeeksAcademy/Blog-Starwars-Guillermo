@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
 import Home from "./views/home";
 import injectContext from "./store/appContext";
 import PersonajeListDisplay from "./component/personajeListDisplay";
 import VehicleListDisplay from "./component/vehicleListDisplay";
 import PlanetaListDisplay from "./component/planetaListDisplay";
 import DetailCard from "./views/detailCard";
-
 import Navbar from "./component/navbar";
+import fondo from "/src/img/404n.jpg";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -33,11 +32,22 @@ const Layout = () => {
               path="/planetaListDisplay"
               element={<PlanetaListDisplay />}
             />
-            <Route path="/detailCard/:id" element={<DetailCard />} />{" "}
-            {/* Route for DetailCard */}
+            <Route path="/detailCard/:id" element={<DetailCard />} />
             <Route
               path="*"
-              element={<h1>Estos no son los androides que buscáis!</h1>}
+              element={
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{
+                    backgroundImage: `url(${fondo})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    width: "100%",
+                    height: "100vh",
+                  }}
+                ></div>
+              }
             />
           </Routes>
         </ScrollToTop>
