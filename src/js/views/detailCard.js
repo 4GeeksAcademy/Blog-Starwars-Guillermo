@@ -69,6 +69,14 @@ const DetailCard = () => {
     }
   };
 
+  const handleFavoriteClick = () => {
+    if (store.Favoritos.find((fav) => fav._id === element._id)) {
+      actions.deleteFav(element._id);
+    } else {
+      actions.addFav(element);
+    }
+  };
+
   if (!element) {
     return (
       <div
@@ -109,16 +117,7 @@ const DetailCard = () => {
           <h1>{element.properties.name}</h1>
           <ul>{renderProperties()}</ul>
           <div>
-            <button
-              className="btn"
-              onClick={() =>
-                actions[
-                  store.Favoritos.find((fav) => fav._id === element._id)
-                    ? "deleteFav"
-                    : "addFav"
-                ](element)
-              }
-            >
+            <button className="btn" onClick={handleFavoriteClick}>
               <i
                 className={`fa-${
                   store.Favoritos.find((fav) => fav._id === element._id)
