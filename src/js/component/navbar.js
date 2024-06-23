@@ -6,6 +6,13 @@ import { useContext } from "react";
 const Navbar = () => {
   const { actions, store } = useContext(Context);
 
+  const routes = {
+    home: "/",
+    personajes: "/personajeListDisplay",
+    vehiculos: "/vehicleListDisplay",
+    planetas: "/planetaListDisplay",
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-black text-white">
       <div className="container-fluid">
@@ -27,25 +34,27 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/">
-                <span className="nav-link text-white" aria-current="page">
-                  Home
-                </span>
+              <Link
+                to={routes.home}
+                className="nav-link text-white"
+                aria-current="page"
+              >
+                Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/personajeListDisplay">
-                <span className="nav-link text-white">Personajes</span>
+              <Link to={routes.personajes} className="nav-link text-white">
+                Personajes
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/vehicleListDisplay">
-                <span className="nav-link text-white">Vehiculos</span>
+              <Link to={routes.vehiculos} className="nav-link text-white">
+                Vehiculos
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/planetaListDisplay">
-                <span className="nav-link text-white">Planetas</span>
+              <Link to={routes.planetas} className="nav-link text-white">
+                Planetas
               </Link>
             </li>
           </ul>
@@ -58,17 +67,18 @@ const Navbar = () => {
             >
               Favoritos
             </button>
-            {store.Favoritos.length > 0 ? (
-              <ul className="dropdown-menu dropdown-menu-lg-end">
-                {store.Favoritos.map((elemento) => (
+            <ul className="dropdown-menu dropdown-menu-lg-end">
+              {store.Favoritos.length > 0 ? (
+                store.Favoritos.map((elemento) => (
                   <li
                     className="d-flex align-items-center justify-content-between"
                     key={elemento._id}
                   >
-                    <Link to={`/detailCard/${elemento._id}`}>
-                      <button className="dropdown-item" type="button">
-                        {elemento.properties.name}
-                      </button>
+                    <Link
+                      to={`/detailCard/${elemento._id}`}
+                      className="dropdown-item"
+                    >
+                      {elemento.properties.name}
                     </Link>
                     <button
                       className="btn"
@@ -77,17 +87,15 @@ const Navbar = () => {
                       <i className="fa-solid fa-trash-can"></i>
                     </button>
                   </li>
-                ))}
-              </ul>
-            ) : (
-              <ul className="dropdown-menu dropdown-menu-lg-end">
+                ))
+              ) : (
                 <li>
                   <span className="dropdown-item text-muted">
                     No hay favoritos
                   </span>
                 </li>
-              </ul>
-            )}
+              )}
+            </ul>
           </div>
         </div>
       </div>
