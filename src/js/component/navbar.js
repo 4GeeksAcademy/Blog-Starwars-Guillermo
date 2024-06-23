@@ -59,7 +59,7 @@ const Navbar = () => {
               Favoritos
             </button>
             {store.Favoritos.length > 0 ? (
-              <ul className="dropdown-menu dropdown-menu-end">
+              <ul className="dropdown-menu dropdown-menu-lg-end">
                 {store.Favoritos.map((elemento) => (
                   <li
                     className="d-flex align-items-center justify-content-between"
@@ -80,7 +80,7 @@ const Navbar = () => {
                 ))}
               </ul>
             ) : (
-              <ul className="dropdown-menu dropdown-menu-end">
+              <ul className="dropdown-menu dropdown-menu-lg-end">
                 <li>
                   <span className="dropdown-item text-muted">
                     No hay favoritos
