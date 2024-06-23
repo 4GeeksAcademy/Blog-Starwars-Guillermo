@@ -160,6 +160,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         const updatedFavoritos = [...store.Favoritos, element];
         setStore({ Favoritos: updatedFavoritos });
       },
+      deleteFav: (_id) => {
+        const store = getStore();
+        const newListFav = store.Favoritos.filter((fav) => fav._id !== _id);
+        setStore({ Favoritos: newListFav });
+        console.log(_id);
+      },
     },
   };
 };

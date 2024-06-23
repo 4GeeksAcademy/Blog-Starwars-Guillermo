@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import fondosnow from "/src/img/star-wars-backgrounds-31_0a247b7f.jpeg";
 
 const DetailCard = () => {
   const { store, actions } = useContext(Context);
@@ -11,14 +12,16 @@ const DetailCard = () => {
     store.Vehiculos.find((element) => element._id === params.id) ||
     store.Planetas.find((element) => element._id === params.id);
 
-  const getImageUrl = (element) => {
-    const { name } = element.properties;
-    return (
-      store.ImagenesPersonajes[name] ||
-      store.ImagenesVehiculos[name] ||
-      store.ImagenesPlanetas[name] ||
-      "Imagen no encontrada"
-    );
+  console.log(element);
+
+  const imagenSelect = (description) => {
+    if (description === "A person within the Star Wars universe") {
+      return "characters";
+    } else if (description === "A vehicle") {
+      return "vehicles";
+    } else {
+      return "planets";
+    }
   };
 
   if (!element) {
@@ -26,10 +29,25 @@ const DetailCard = () => {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        overflow: "hidden",
+        backgroundImage: `url(${fondosnow})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        width: "100vw",
+      }}
+    >
       <div className="card" style={{ width: "18rem" }}>
         <img
-          src={getImageUrl(element)}
+          src={
+            element._id == "5f7254c11b7dfa00041c6fae"
+              ? store.ImagenesPlanetas.tatooine
+              : `https://starwars-visualguide.com/assets/img/${imagenSelect(
+                  element.description
+                )}/${element.uid}.jpg`
+          }
           className="card-img-top"
           alt={element.properties.name}
         />

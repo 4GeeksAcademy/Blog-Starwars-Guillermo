@@ -5,6 +5,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
   const { actions, store } = useContext(Context);
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -25,24 +26,24 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to={"/"}>
+              <Link to="/">
                 <span className="nav-link" aria-current="page">
                   Home
                 </span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/personajeListDisplay"}>
+              <Link to="/personajeListDisplay">
                 <span className="nav-link">Personajes</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/vehicleListDisplay"}>
+              <Link to="/vehicleListDisplay">
                 <span className="nav-link">Vehiculos</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/planetaListDisplay"}>
+              <Link to="/planetaListDisplay">
                 <span className="nav-link">Planetas</span>
               </Link>
             </li>
@@ -56,15 +57,36 @@ const Navbar = () => {
             >
               Favoritos
             </button>
-            <ul className="dropdown-menu dropdown-menu-end">
-              {store.Favoritos.map((elemento) => (
-                <li key={elemento._id}>
-                  <button className="dropdown-item" type="button">
-                    {elemento.properties.name}
-                  </button>
+            {store.Favoritos.length > 0 ? (
+              <ul className="dropdown-menu dropdown-menu-end">
+                {store.Favoritos.map((elemento) => (
+                  <li
+                    className="d-flex align-items-center justify-content-between"
+                    key={elemento._id}
+                  >
+                    <Link to={`/detailCard/${elemento._id}`}>
+                      <button className="dropdown-item" type="button">
+                        {elemento.properties.name}
+                      </button>
+                    </Link>
+                    <button
+                      className="btn"
+                      onClick={() => actions.deleteFav(elemento._id)}
+                    >
+                      <i className="fa-solid fa-trash-can"></i>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li>
+                  <span className="dropdown-item text-muted">
+                    No hay favoritos
+                  </span>
                 </li>
-              ))}
-            </ul>
+              </ul>
+            )}
           </div>
         </div>
       </div>

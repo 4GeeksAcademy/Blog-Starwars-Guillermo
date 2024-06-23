@@ -2,10 +2,8 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import fondo from "/src/img/fondoespacio.jpg";
 
 const DataCard = ({ dataList }) => {
-  console.log(dataList);
   if (!dataList) return null;
   const { store, actions } = useContext(Context);
 
@@ -18,7 +16,8 @@ const DataCard = ({ dataList }) => {
       return "planets";
     }
   };
-
+  //<i clasName="fa-solid fa-bookmark fa-xl" style={{ color: "#fafafa" }}></i>
+  //<i className="fa-regular fa-bookmark fa-xl" style={{ color: "#ffffff" }}></i>
   return (
     <>
       {dataList.map((data) => (
@@ -57,9 +56,24 @@ const DataCard = ({ dataList }) => {
                     Info
                   </button>
                 </Link>
-                <button className="btn" onClick={() => actions.addFav(data)}>
-                  <i className="fa-regular fa-bookmark fa-xl"></i>
-                </button>
+                {store.Favoritos.find((element) => element._id === data._id) ? (
+                  <button
+                    className="btn"
+                    onClick={() => actions.deleteFav(data._id)}
+                  >
+                    <i
+                      className="fa-solid fa-bookmark fa-xl"
+                      style={{ color: "#fafafa" }}
+                    ></i>
+                  </button>
+                ) : (
+                  <button className="btn" onClick={() => actions.addFav(data)}>
+                    <i
+                      className="fa-regular fa-bookmark fa-xl"
+                      style={{ color: "#ffffff" }}
+                    ></i>
+                  </button>
+                )}
               </div>
             </div>
           </div>
