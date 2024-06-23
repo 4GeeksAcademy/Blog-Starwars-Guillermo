@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import Home from "./views/home";
-import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 import PersonajeListDisplay from "./component/personajeListDisplay";
 import VehicleListDisplay from "./component/vehicleListDisplay";
@@ -34,7 +33,6 @@ const Layout = () => {
               path="/planetaListDisplay"
               element={<PlanetaListDisplay />}
             />
-            <Route path="/single/:theid" element={<Single />} />
             <Route path="/detailCard/:id" element={<DetailCard />} />{" "}
             {/* Route for DetailCard */}
             <Route
