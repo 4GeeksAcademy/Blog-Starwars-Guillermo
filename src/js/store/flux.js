@@ -12,10 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
     actions: {
-      getListaPersonajes: async () => {
-        const actions = getActions();
+      fetchAPI: async (url) => {
         try {
-          const response = await fetch(`https://www.swapi.tech/api/people/`, {
+          const response = await fetch(url, {
             method: "GET",
             headers: {
               accept: "application/json",
@@ -26,145 +25,103 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (!response.ok) throw new Error("Network response was not ok");
 
           const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Fetch request failed:", error);
+          throw error;
+        }
+      },
 
+      getListaPersonajes: async () => {
+        const actions = getActions();
+        try {
+          const data = await actions.fetchAPI(
+            `https://www.swapi.tech/api/people/`
+          );
           const personajesDetailsPromises = data.results.map((personaje) =>
             actions.getPersonajes(personaje.uid)
           );
           const personajesDetails = await Promise.all(
             personajesDetailsPromises
           );
-
           setStore({ Personajes: personajesDetails });
         } catch (error) {
-          console.error("Fetch request failed:", error);
+          console.error("Failed to fetch personajes list:", error);
         }
       },
       getPersonajes: async (id) => {
+        const actions = getActions();
         try {
-          const response = await fetch(
-            `https://www.swapi.tech/api/people/${id}`,
-            {
-              method: "GET",
-              headers: {
-                accept: "application/json",
-                "Content-Type": "application/json",
-              },
-            }
+          const data = await actions.fetchAPI(
+            `https://www.swapi.tech/api/people/${id}`
           );
-
-          if (!response.ok) throw new Error("Network response was not ok");
-
-          const data = await response.json();
-
           return data.result;
         } catch (error) {
-          console.error("Fetch request failed:", error);
+          console.error("Failed to fetch personaje:", error);
         }
       },
       getListaVehiculos: async () => {
         const actions = getActions();
         try {
-          const response = await fetch(`https://www.swapi.tech/api/vehicles/`, {
-            method: "GET",
-            headers: {
-              accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          });
-
-          if (!response.ok) throw new Error("Network response was not ok");
-
-          const data = await response.json();
-
+          const data = await actions.fetchAPI(
+            `https://www.swapi.tech/api/vehicles/`
+          );
           const vehiculosDetailsPromises = data.results.map((vehiculo) =>
             actions.getVehiculos(vehiculo.uid)
           );
           const vehiculosDetails = await Promise.all(vehiculosDetailsPromises);
-
           setStore({ Vehiculos: vehiculosDetails });
         } catch (error) {
-          console.error("Fetch request failed:", error);
+          console.error("Failed to fetch vehiculos list:", error);
         }
       },
       getVehiculos: async (id) => {
+        const actions = getActions();
         try {
-          const response = await fetch(
-            `https://www.swapi.tech/api/vehicles/${id}`,
-            {
-              method: "GET",
-              headers: {
-                accept: "application/json",
-                "Content-Type": "application/json",
-              },
-            }
+          const data = await actions.fetchAPI(
+            `https://www.swapi.tech/api/vehicles/${id}`
           );
-
-          if (!response.ok) throw new Error("Network response was not ok");
-
-          const data = await response.json();
-
           return data.result;
         } catch (error) {
-          console.error("Fetch request failed:", error);
+          console.error("Failed to fetch vehiculo:", error);
         }
       },
       getListaPlanetas: async () => {
         const actions = getActions();
         try {
-          const response = await fetch(`https://www.swapi.tech/api/planets/`, {
-            method: "GET",
-            headers: {
-              accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          });
-
-          if (!response.ok) throw new Error("Network response was not ok");
-
-          const data = await response.json();
-
+          const data = await actions.fetchAPI(
+            `https://www.swapi.tech/api/planets/`
+          );
           const planetasDetailsPromises = data.results.map((planeta) =>
             actions.getPlanetas(planeta.uid)
           );
           const planetasDetails = await Promise.all(planetasDetailsPromises);
-
           setStore({ Planetas: planetasDetails });
         } catch (error) {
-          console.error("Fetch request failed:", error);
+          console.error("Failed to fetch planetas list:", error);
         }
       },
       getPlanetas: async (id) => {
+        const actions = getActions();
         try {
-          const response = await fetch(
-            `https://www.swapi.tech/api/planets/${id}`,
-            {
-              method: "GET",
-              headers: {
-                accept: "application/json",
-                "Content-Type": "application/json",
-              },
-            }
+          const data = await actions.fetchAPI(
+            `https://www.swapi.tech/api/planets/${id}`
           );
-
-          if (!response.ok) throw new Error("Network response was not ok");
-
-          const data = await response.json();
-
           return data.result;
         } catch (error) {
-          console.error("Fetch request failed:", error);
+          console.error("Failed to fetch planeta:", error);
         }
       },
       addFav: (element) => {
         const store = getStore();
-        const updatedFavoritos = [...store.Favoritos, element];
-        setStore({ Favoritos: updatedFavoritos });
+        setStore({ Favoritos: [...store.Favoritos, element] });
       },
-      deleteFav: (_id) => {
+      deleteFav: (id) => {
         const store = getStore();
-        const newListFav = store.Favoritos.filter((fav) => fav._id !== _id);
-        setStore({ Favoritos: newListFav });
-        console.log(_id);
+        const updatedFavoritos = store.Favoritos.filter(
+          (fav) => fav._id !== id
+        );
+        setStore({ Favoritos: updatedFavoritos });
       },
     },
   };
