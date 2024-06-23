@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import DataCard from "./dataCard";
 import fondo from "/src/img/fondoespacio.jpg";
-import fondosw from "/src/img/fondosw.jpg";
 
 const PersonajeListDisplay = () => {
   const { store } = useContext(Context);

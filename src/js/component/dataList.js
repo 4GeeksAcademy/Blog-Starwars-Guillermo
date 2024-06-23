@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const DataList = () => {
   return (
     <div
+      className=" d-flex justify-content-center"
       style={{
         overflow: "hidden",
         backgroundImage: `url(${fondospace})`,
@@ -16,7 +17,7 @@ const DataList = () => {
         minHeight: "100vh",
       }}
     >
-      <div className="p-5">
+      <div className="p-5 col-xxl-8">
         <Link to="/personajeListDisplay">
           <div className="card text-bg-dark mb-5">
             <img src={yoda} className="card-img" alt="Yoda" />
