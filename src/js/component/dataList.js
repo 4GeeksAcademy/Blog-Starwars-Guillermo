@@ -8,9 +8,8 @@ import { Link } from "react-router-dom";
 const DataList = () => {
   return (
     <div
-      className=" d-flex justify-content-center"
+      className="d-flex justify-content-center"
       style={{
-        overflow: "hidden",
         backgroundImage: `url(${fondospace})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -18,27 +17,27 @@ const DataList = () => {
       }}
     >
       <div className="p-5 col-xxl-8">
-        <Link to="/personajeListDisplay">
-          <div className="card text-bg-dark mb-5">
+        <Link to="/personajeListDisplay" className="text-decoration-none">
+          <div className="card mb-5">
             <img src={yoda} className="card-img" alt="Yoda" />
             <div className="card-img-overlay d-flex align-items-center justify-content-center">
-              <h2 className="card-title">Personajes</h2>
+              <h2 className="card-title  text-white">Personajes</h2>
             </div>
           </div>
         </Link>
-        <Link to="/vehicleListDisplay">
-          <div className="card text-bg-dark mb-5">
+        <Link to="/vehicleListDisplay" className="text-decoration-none">
+          <div className="card mb-5">
             <img src={vainas} className="card-img" alt="Vehículos" />
             <div className="card-img-overlay d-flex align-items-center justify-content-center">
-              <h2 className="card-title">Vehículos</h2>
+              <h2 className="card-title text-white">Vehículos</h2>
             </div>
           </div>
         </Link>
-        <Link to="/planetaListDisplay">
-          <div className="card text-bg-dark">
+        <Link to="/planetaListDisplay" className="text-decoration-none">
+          <div className="card">
             <img src={planeta} className="card-img" alt="Planetas" />
             <div className="card-img-overlay d-flex align-items-center justify-content-center">
-              <h2 className="card-title">Planetas</h2>
+              <h2 className="card-title text-white">Planetas</h2>
             </div>
           </div>
         </Link>
