@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import fondosnow from "/src/img/star-wars-backgrounds-31_0a247b7f.jpeg";
+import tatooine from "/src/img/tatooin.jpg";
 
 const DetailCard = () => {
   const { store, actions } = useContext(Context);
@@ -25,51 +26,99 @@ const DetailCard = () => {
   };
 
   if (!element) {
-    return <p>Loading...</p>;
+    return (
+      <div
+        className="container-fluid"
+        style={{
+          overflow: "hidden",
+          backgroundImage: `url(${tatooine})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+        }}
+      >
+        <p className="text-light">Loading...</p>
+      </div>
+    );
   }
 
   return (
     <div
+      className="container-fluid p-2"
       style={{
         overflow: "hidden",
         backgroundImage: `url(${fondosnow})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100vh",
-        width: "100vw",
       }}
     >
-      <div className="card" style={{ width: "18rem" }}>
-        <img
-          src={
-            element._id == "5f7254c11b7dfa00041c6fae"
-              ? store.ImagenesPlanetas.tatooine
-              : `https://starwars-visualguide.com/assets/img/${imagenSelect(
-                  element.description
-                )}/${element.uid}.jpg`
-          }
-          className="card-img-top"
-          alt={element.properties.name}
-        />
-        <div className="card-body">
-          <h5 className="card-title">{element.properties.name}</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+      <div className=" d-flex justify-content-center gap-3 mt-5">
+        <div>
+          <img
+            src={
+              element._id == "5f7254c11b7dfa00041c6fae"
+                ? store.ImagenesPlanetas.tatooine
+                : `https://starwars-visualguide.com/assets/img/${imagenSelect(
+                    element.description
+                  )}/${element.uid}.jpg`
+            }
+            className="card-img-top"
+            alt={element.properties.name}
+          />
         </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">An item</li>
-          <li className="list-group-item">A second item</li>
-          <li className="list-group-item">A third item</li>
-        </ul>
-        <div className="card-body">
-          <Link to="#" className="card-link">
-            Card link
-          </Link>
-          <Link to="#" className="card-link">
-            Another link
-          </Link>
+        <div>
+          <h1>{element.properties.name}</h1>
+          <ul>
+            {element.description ===
+              "A person within the Star Wars universe" && (
+              <>
+                <li>Gender: {element.properties.gender}</li>
+                <li>Height: {element.properties.height}</li>
+                <li>Eye color: {element.properties.eye_color}</li>
+                <li>Birth year: {element.properties.birth_year}</li>
+                <li>Mass: {element.properties.mass}</li>
+              </>
+            )}
+            {element.description === "A vehicle" && (
+              <>
+                <li>Model: {element.properties.model}</li>
+                <li>Cargo capacity: {element.properties.cargo_capacity}</li>
+                <li>Cost in credits: {element.properties.cost_in_credits}</li>
+                <li>Manufacturer: {element.properties.manufacturer}</li>
+                <li>Vehicle class: {element.properties.vehicle_class}</li>
+              </>
+            )}
+            {element.description === "A planet." && (
+              <>
+                <li>Climate: {element.properties.climate}</li>
+                <li>Diameter: {element.properties.diameter}</li>
+                <li>Gravity: {element.properties.gravity}</li>
+                <li>Population: {element.properties.population}</li>
+                <li>Terrain: {element.properties.terrain}</li>
+              </>
+            )}
+          </ul>
+          <div>
+            {store.Favoritos.find((fav) => fav._id === element._id) ? (
+              <button
+                className="btn"
+                onClick={() => actions.deleteFav(element._id)}
+              >
+                <i
+                  className="fa-solid fa-bookmark fa-xl"
+                  style={{ color: "#fafafa" }}
+                ></i>
+              </button>
+            ) : (
+              <button className="btn" onClick={() => actions.addFav(element)}>
+                <i
+                  className="fa-regular fa-bookmark fa-xl"
+                  style={{ color: "#ffffff" }}
+                ></i>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

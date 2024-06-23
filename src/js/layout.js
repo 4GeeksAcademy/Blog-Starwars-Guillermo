@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import Home from "./views/home";
-import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 import PersonajeListDisplay from "./component/personajeListDisplay";
@@ -23,13 +22,25 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/personajeListDisplay" element={<PersonajeListDisplay />} />
-            <Route path="/vehicleListDisplay" element={<VehicleListDisplay />} />
-            <Route path="/planetaListDisplay" element={<PlanetaListDisplay />} />
-            <Route path="/demo" element={<Demo />} />
+            <Route
+              path="/personajeListDisplay"
+              element={<PersonajeListDisplay />}
+            />
+            <Route
+              path="/vehicleListDisplay"
+              element={<VehicleListDisplay />}
+            />
+            <Route
+              path="/planetaListDisplay"
+              element={<PlanetaListDisplay />}
+            />
             <Route path="/single/:theid" element={<Single />} />
-            <Route path="/detailCard/:id" element={<DetailCard />} /> {/* Route for DetailCard */}
-            <Route path="*" element={<h1>Estos no son los androides que buscáis!</h1>} />
+            <Route path="/detailCard/:id" element={<DetailCard />} />{" "}
+            {/* Route for DetailCard */}
+            <Route
+              path="*"
+              element={<h1>Estos no son los androides que buscáis!</h1>}
+            />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

@@ -7,11 +7,9 @@ const Navbar = () => {
   const { actions, store } = useContext(Context);
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-black text-white">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Star Wars
-        </a>
+        <h1 className="navbar-brand text-warning">Star Wars</h1>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,30 +19,33 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <i
+            className="fa-solid fa-bars fa-beat"
+            style={{ color: "#ffffff" }}
+          ></i>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/">
-                <span className="nav-link" aria-current="page">
+                <span className="nav-link text-white" aria-current="page">
                   Home
                 </span>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/personajeListDisplay">
-                <span className="nav-link">Personajes</span>
+                <span className="nav-link text-white">Personajes</span>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/vehicleListDisplay">
-                <span className="nav-link">Vehiculos</span>
+                <span className="nav-link text-white">Vehiculos</span>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/planetaListDisplay">
-                <span className="nav-link">Planetas</span>
+                <span className="nav-link text-white">Planetas</span>
               </Link>
             </li>
           </ul>
